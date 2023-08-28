@@ -69,7 +69,8 @@ exports.getAllProducts = async(req,res,next) =>{
         ...(query.search && {title : {$regex : query.search , $options:"i"}})
     }
     try{
-        const products = await productModel.find(filters).sort({[query.sort] : -1})
+        // const products = await productModel.find(filters).sort({[query.sort] : -1})
+        const products = await productModel.find(filters).sort({createdAt : -1})
         res.status(200).json(products)
     }catch(err){
         next(err)

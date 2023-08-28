@@ -76,7 +76,7 @@ width:98%;
 margin-left:1%;
 `
 
-const CartProduct = ({p}) => {
+const CartProduct = ({p,total}) => {
 
     const [CartProduct, setcartProduct] = useState()
 

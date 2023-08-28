@@ -10,6 +10,8 @@ display:flex;
 padding:20px;
 justify-content:space-between;
 flex-wrap:wrap;
+gap:20px;
+margin-top:40px;
 `
 
 const Products = ({products,color,search}) => {
@@ -33,7 +35,7 @@ const Products = ({products,color,search}) => {
   return (
     <Container>
         {
-           category ? categoryProduct.map((c)=><Product p={c} key={c?._id} />) : products?.slice(0,8).map((p,i)=><Product p={p} key={i}/>)
+           category ? categoryProduct.map((c)=><Product p={c} key={c?._id} />) : products?.slice(0,12).map((p,i)=><Product p={p} key={i}/>)
         }
         {
           !categoryProduct && (!products && <p style={{color:"red",textAlign:"center",width:"100%",padding:"50px 0px"}}>NO items found !</p>)

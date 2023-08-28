@@ -1,25 +1,25 @@
 export const sliderdata = [
     {
-        image:"/assets/png/2.png",
+        image:"/assets/png/m6.png",
         title:"AUTUMN COLLECTION1",
         desc:"DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
         bg: "f5fafd"
     },
     {
-        image:"/assets/png/one.png",
-        title:"AUTUMN COLLECTION2",
+        image:"/assets/png/m3.png",
+        title:"Seasonal Assortment",
         desc:"DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
         bg: "fcf1ed",
     },
     {
-        image:"/assets/png/six.png",
-        title:"AUTUMN COLLECTION3",
+        image:"/assets/png/m4.png",
+        title:"Harvest Compilation",
         desc:"DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
         bg: "fbf0f4"
     },
     {
-        image:"/assets/png/three.png",
-        title:"AUTUMN COLLECTION4",
+        image:"/assets/png/m5.png",
+        title:"Assorted Collection",
         desc:"DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
         bg: "faf4f4"
 
@@ -29,18 +29,21 @@ export const sliderdata = [
 export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "https://assets.vogue.com/photos/61e9c42f201fe8db0bc39899/4:3/w_1600%2Cc_limit/00_promo.jpg",
       title: "SHIRT STYLE!",
+      category: 'male'
     },
     {
       id: 2,
       img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       title: "LOUNGEWEAR LOVE",
+      category: 'female'
     },
     {
       id: 3,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       title: "LIGHT JACKETS",
+      category: 'jackets'
     },
   ];
 

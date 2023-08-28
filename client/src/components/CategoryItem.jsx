@@ -47,7 +47,7 @@ cursor:pointer;
 const CategoryItem = ({c}) => {
   return (
     <Container>
-    <Link to='/products/male'>
+    <Link to={`/products/${c.category}`}>
         <Image src={c.img} alt=''/>
         <Info>
             <Title>{c.title}</Title>

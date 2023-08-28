@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {GrCart} from "react-icons/gr"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Nav = styled.div`
@@ -67,6 +67,13 @@ left:9px;
 const Navbar = ({setSearch}) => {
   const currentCart = useSelector((cart) => cart.cartReducer.payload)
   const user = useSelector((user)=>user.LoginReducer.currentUser)
+  const navigate = useNavigate()
+
+  const handleLogOut = () =>{
+    localStorage.clear()
+    navigate('/login')
+    window.location.reload()
+  }
   return (
     <Nav>
       <Navleft>
@@ -74,12 +81,12 @@ const Navbar = ({setSearch}) => {
         <Searchbar onChange={(e)=>setSearch(e.target.value)}/>
       </Navleft>
       <Navmid>
-        <Link to={'/'}><Heading>FITLIFEMEDS.</Heading></Link>
+        <Link to={'/'}><Heading>SHOPMINGLE.</Heading></Link>
       </Navmid>
       <Navright>
         <Link to={`/register`}><MenuItem>REGISTER</MenuItem></Link>
-        <Link to={`/register`}><MenuItem>SIGN IN</MenuItem></Link>
-        <Link to={`/cart`}><MenuItem style={{position:"relative"}}><GrCart style={{marginRight:"40px"}}/><Badge>{currentCart.products.length}</Badge></MenuItem></Link>
+       {user ? <MenuItem onClick={handleLogOut}>LogOut</MenuItem> : <Link to={`/register`}><MenuItem>SIGN IN</MenuItem></Link>}
+        <Link to={user ? `/cart` : '/login'}><MenuItem style={{position:"relative"}}><GrCart style={{marginRight:"40px"}}/><Badge>{currentCart?.products.length > 0 ? currentCart?.products.length : 0}</Badge></MenuItem></Link>
       </Navright>
     </Nav>
   )

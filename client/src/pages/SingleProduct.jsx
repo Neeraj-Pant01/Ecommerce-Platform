@@ -6,12 +6,11 @@ import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Getcarts } from '../redux/actions/action';
 
 const Container = styled.div`
-
     `
 const Wrapper = styled.div`
     display:flex;
@@ -19,6 +18,8 @@ const Wrapper = styled.div`
     `
 const ImageContainer = styled.div`
     flex:1;
+    // border:2px solid red;
+    height:80vh;
     `
 const InfoContainer = styled.div`
     flex:1;
@@ -28,8 +29,8 @@ const InfoContainer = styled.div`
     gap:20px;
     `
 const Image = styled.img`
-    height:90vh;
-    width:100%;
+height:90%;
+width:100%;
     object-fit:cover;
     `
 const Title = styled.h1`
@@ -115,6 +116,7 @@ const SingleProduct = () => {
   const [cart, setCart] = useState()
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const user = useSelector((user) => user.LoginReducer.currentUser)
   const currentCart = useSelector((cart) => cart.cartReducer.payload)
@@ -189,6 +191,10 @@ const SingleProduct = () => {
     }
   };
 
+  const logNavigate = () =>{
+    navigate('/login')
+  }
+
 
   return (
     <Container>
@@ -227,7 +233,7 @@ const SingleProduct = () => {
               <Quantity>{quatity}</Quantity>
               <IoMdAdd style={{ fontSize: "24px", fontWeight: "600", cursor: "pointer" }} onClick={() => setQuantity(quatity + 1)} />
             </AmountContainer>
-            <Button onClick={handleCart}>ADD TO CART</Button>
+            <Button onClick={user ? handleCart : logNavigate}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

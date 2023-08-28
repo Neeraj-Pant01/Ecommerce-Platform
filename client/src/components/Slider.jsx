@@ -49,6 +49,7 @@ justify-content:center;
 `;
 const Title = styled.h1`
 font-size:70px;
+text-transform:uppercase;
 `;
 const Desc = styled.div`
 margin:50px 0px;

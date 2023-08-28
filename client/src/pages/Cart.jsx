@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Announcements from '../components/Announcements'
 import { styled } from 'styled-components'
 import { IoMdAdd, IoMdRemove } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 import CartProduct from '../components/CartProduct'
+import axios from 'axios'
 
 const Container = styled.div`
 `
@@ -77,6 +78,33 @@ const OrderPrice = styled.span`
 const Cart = () => {
 
     const cart = useSelector((cart)=>cart.cartReducer?.payload.products)
+    const totalProd = useSelector((cart)=>cart.cartReducer?.payload.products)
+
+    console.log(totalProd)
+    
+    const [totalPrice, setTotalPrice] = useState([]);
+
+    useEffect(() => {
+        const calculateTotalPrice = async () => {
+          try {
+            const pricePromises = totalProd.map(async (p) => {
+              const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URI}products/${p.productId}`);
+              return response.data.price * p.quantity;
+            });
+      
+            const totalPriceArray = await Promise.all(pricePromises);
+      
+            // Calculate the sum of totalPriceArray
+            const total = totalPriceArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+      
+            setTotalPrice(total);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+      
+        calculateTotalPrice();
+      }, []);
 
   return (
     <Container>
@@ -107,19 +135,19 @@ const Cart = () => {
                     <OrderSummary>ORDER SUMMARY</OrderSummary>
                     <OrderDetails>
                         <OrderDetail>Subtotal</OrderDetail>
-                        <OrderPrice>480</OrderPrice>
+                        <OrderPrice>{totalPrice}</OrderPrice>
                     </OrderDetails>
                     <OrderDetails>
-                        <OrderDetail>Subtotal</OrderDetail>
-                        <OrderPrice>480</OrderPrice>
+                        <OrderDetail>Estimated-shipping</OrderDetail>
+                        <OrderPrice>200</OrderPrice>
                     </OrderDetails>
                     <OrderDetails>
-                        <OrderDetail>Subtotal</OrderDetail>
-                        <OrderPrice>480</OrderPrice>
+                        <OrderDetail>Shipping Discount</OrderDetail>
+                        <OrderPrice>-200</OrderPrice>
                     </OrderDetails>
                     <OrderDetails>
                             <Span total='true'>Total</Span>
-                            <Span total='true'>$80</Span>
+                            <Span total='true'>{totalPrice}</Span>
                     </OrderDetails>
                 <Topbutton width='false'>CHECKOUT NOW</Topbutton>
                 </Summary>
